@@ -1,0 +1,12 @@
+{
+  "name": "mariokart",
+  "version": "1.0.0",
+  "description": "Jogo para terminal, para testes, com tematica de mario kart",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "klausscamander",
+  "license": "ISC"
+}
