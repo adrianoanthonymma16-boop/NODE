@@ -27,7 +27,15 @@ function getItemById(id) {
 function increaseItemQuantity(id, quantidade) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
-            estoque[i].quantidade += quantidade;
+            let item = estoque[1];
+            if (item.quantidade === 0) {
+                item.quantidade += quantidade;
+                item.disponivel = true;
+            }
+            else
+            {
+                item.quantidade += quantidade;
+            }            
             return;
         }
     }
@@ -36,13 +44,19 @@ function increaseItemQuantity(id, quantidade) {
 
 function decreaseItemQuantity(id, quantidade) {
     for (let i = 0; i < estoque.length; i++) {
-        if (estoque[i].id === id) {
-            if (estoque[i].quantidade < quantidade) {
+        let item = estoque[1];
+        if (item.id === id) {
+            if (item.quantidade < quantidade) {
                 throw new Error(`Quantidade solicitada (${quantidade}) ` +
                                 `é maior que a quantidade disponível ` +
-                                `em estoque (${estoque[i].quantidade}).`);
+                                `em estoque (${item.quantidade}).`);
             }
-            estoque[i].quantidade -= quantidade;
+            if (item.quantidade - quantidade === 0) {
+                item.quantidade -= quantidade;
+                item.disponivel = false;
+            } else {
+                item.quantidade -= quantidade;
+            }
             return;
         }
     }
@@ -58,8 +72,10 @@ function createItem() {
 function removeItem(id) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
-            estoque.splice(i, 1);
-            console.log(`Item com ID ${id} removido do estoque.`);
+            let item = estoque[i];
+            item.disponivel = false;
+            item.quantidade = 0;
+            console.log(`Item ${item.nome} com ID ${id} removido do estoque.`);
             return;
         }
     }
