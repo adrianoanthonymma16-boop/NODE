@@ -1,3 +1,6 @@
+import PromptSync from "prompt-sync";
+const prompt = PromptSync();
+
 function validarItem(nome, preco, quantidade, itensExistentes = []) {
     const erros = [];
     
@@ -57,5 +60,21 @@ function validarItem(nome, preco, quantidade, itensExistentes = []) {
     
     return erros;
 }
+function continuar() {
+    
+    while (true) {
+        let continuar = prompt("Deseja adcionar outro item? (s/n)").toLowerCase();
 
+        switch (continuar) {
+            case "s":
+                
+                continue;
+            case "n":
+                
+                return;
+            default:
+                break;
+        }
+    }
+}
 export { validarItem };
