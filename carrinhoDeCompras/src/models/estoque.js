@@ -7,12 +7,14 @@ function getEstoque() {
         console.log(item.getFullDescription());
     }
 }
+
 function getEstoqueDisponivel() {
     for (let i = 0; i < estoque.length; i++) {
         let item = estoque[i];
         console.log(item.getDispItens());
     }
 }
+
 function getItemById(id) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
@@ -21,6 +23,7 @@ function getItemById(id) {
     }
     return null;
 }
+
 function increaseItemQuantity(id, quantidade) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
@@ -30,6 +33,7 @@ function increaseItemQuantity(id, quantidade) {
     }
     throw new Error(`Item com ID ${id} não encontrado no estoque.`);
 }
+
 function decreaseItemQuantity(id, quantidade) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
@@ -44,11 +48,13 @@ function decreaseItemQuantity(id, quantidade) {
     }
     throw new Error(`Item com ID ${id} não encontrado no estoque.`);
 }
+
 function createItem() {
     const newItem = controlItems.createItem();
     estoque.push(newItem);
     console.log(`Item ${newItem.nome} adicionado ao estoque.`);
 }
+
 function removeItem(id) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
