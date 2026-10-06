@@ -27,7 +27,7 @@ function getItemById(id) {
 function increaseItemQuantity(id, quantidade) {
     for (let i = 0; i < estoque.length; i++) {
         if (estoque[i].id === id) {
-            let item = estoque[1];
+            let item = estoque[i];
             if (item.quantidade === 0) {
                 item.quantidade += quantidade;
                 item.disponivel = true;
@@ -44,7 +44,7 @@ function increaseItemQuantity(id, quantidade) {
 
 function decreaseItemQuantity(id, quantidade) {
     for (let i = 0; i < estoque.length; i++) {
-        let item = estoque[1];
+        let item = estoque[i];
         if (item.id === id) {
             if (item.quantidade < quantidade) {
                 throw new Error(`Quantidade solicitada (${quantidade}) ` +

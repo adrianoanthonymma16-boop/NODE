@@ -1,7 +1,7 @@
 import PromptSync from "prompt-sync";
 const prompt = PromptSync();
 
-function validarItem(nome, preco, itensExistentes = []) {
+function validarItem(nome, preco, quantidade, itensExistentes = []) {
     const erros = [];
     
     // // ============================================
@@ -48,15 +48,15 @@ function validarItem(nome, preco, itensExistentes = []) {
     // ============================================
     // QUANTIDADE — inteiro positivo, até 10.000
     // ============================================
-    // if (typeof quantidade !== "number" || isNaN(quantidade)) {
-    //     erros.push("Quantidade deve ser um número");
-    // } else if (!Number.isInteger(quantidade)) {
-    //     erros.push("Quantidade deve ser um número inteiro");
-    // } else if (quantidade <= 0) {
-    //     erros.push("Quantidade deve ser positiva");
-    // } else if (quantidade > 10_000) {
-    //     erros.push("Quantidade muito alta (máx 10.000)");
-    // }
+    if (typeof quantidade !== "number" || isNaN(quantidade)) {
+        erros.push("Quantidade deve ser um número");
+    } else if (!Number.isInteger(quantidade)) {
+        erros.push("Quantidade deve ser um número inteiro");
+    } else if (quantidade <= 0) {
+        erros.push("Quantidade deve ser positiva");
+    } else if (quantidade > 10_000) {
+        erros.push("Quantidade muito alta (máx 10.000)");
+    }
     
     return erros;
 }
@@ -78,4 +78,11 @@ function continuar() {
     }
 }
 
-export { validarItem, continuar };
+function formatarMoeda(valor) {
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+export { validarItem, continuar, formatarMoeda };
