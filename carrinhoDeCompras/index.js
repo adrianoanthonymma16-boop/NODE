@@ -2,6 +2,7 @@ import promptSync from "prompt-sync";
 import * as estoque from "./src/models/estoque.js";
 const prompt = promptSync();
 import * as gerenciadorDoCarrinho from "./src/models/carrinho.js"
+import * as gerenciadorDeVendas from "./src/models/venda.js"
 function Main() {
     while (true) {
         // console.clear();
@@ -86,6 +87,7 @@ function Main() {
                 break;
             case "9":
                 // Finalizar compra
+                gerenciadorDeVendas.finalizarCompra(gerenciadorDoCarrinho.carrinho);
                 break;
             default:
                 console.log("Opção inválida. Tente novamente.");
