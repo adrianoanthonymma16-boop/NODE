@@ -1,7 +1,7 @@
 import PromptSync from "prompt-sync";
 const prompt = PromptSync();
 
-function validarItem(nome, preco, quantidade, itensExistentes = []) {
+function validarItem(nome, preco, itensExistentes = []) {
     const erros = [];
     
     // // ============================================
@@ -48,33 +48,34 @@ function validarItem(nome, preco, quantidade, itensExistentes = []) {
     // ============================================
     // QUANTIDADE — inteiro positivo, até 10.000
     // ============================================
-    if (typeof quantidade !== "number" || isNaN(quantidade)) {
-        erros.push("Quantidade deve ser um número");
-    } else if (!Number.isInteger(quantidade)) {
-        erros.push("Quantidade deve ser um número inteiro");
-    } else if (quantidade <= 0) {
-        erros.push("Quantidade deve ser positiva");
-    } else if (quantidade > 10_000) {
-        erros.push("Quantidade muito alta (máx 10.000)");
-    }
+    // if (typeof quantidade !== "number" || isNaN(quantidade)) {
+    //     erros.push("Quantidade deve ser um número");
+    // } else if (!Number.isInteger(quantidade)) {
+    //     erros.push("Quantidade deve ser um número inteiro");
+    // } else if (quantidade <= 0) {
+    //     erros.push("Quantidade deve ser positiva");
+    // } else if (quantidade > 10_000) {
+    //     erros.push("Quantidade muito alta (máx 10.000)");
+    // }
     
     return erros;
 }
 function continuar() {
-    
+    let escolha;
     while (true) {
-        let continuar = prompt("Deseja adcionar outro item? (s/n)").toLowerCase();
-
+        let continuar = prompt("(s/n) >>> ").toLowerCase();
         switch (continuar) {
             case "s":
-                
-                continue;
+                escolha = true;
+                return escolha;
             case "n":
-                
-                return;
+                escolha = false;
+                return escolha;
             default:
-                break;
+                console.log("Alternativa inválida, tente novamente!");
+                continue;
         }
     }
 }
-export { validarItem };
+
+export { validarItem, continuar };
