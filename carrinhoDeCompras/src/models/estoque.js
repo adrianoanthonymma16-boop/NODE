@@ -82,5 +82,5 @@ function removeItem(id) {
     throw new Error(`Item com ID ${id} não encontrado no estoque.`);
 }
 
-export { getEstoque, getEstoqueDisponivel, getItemById, increaseItemQuantity, decreaseItemQuantity, createItem, removeItem };
+export { getEstoque, getEstoqueDisponivel, getItemById, increaseItemQuantity, decreaseItemQuantity, createItem, removeItem, estoque };
 
