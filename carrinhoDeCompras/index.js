@@ -1,8 +1,10 @@
 import promptSync from "prompt-sync";
 import * as estoque from "./src/models/estoque.js";
 const prompt = promptSync();
+import * as gerenciadorDoCarrinho from "./src/models/carrinho.js"
 function Main() {
     while (true) {
+        // console.clear();
         console.log("=== Menu Principal ===");
         console.log("1 - Listar itens disponíveis\n" +
             "2 - Adicionar item ao estoque\n" +
@@ -33,6 +35,10 @@ function Main() {
                 estoque.createItem();
                 break;
             case "3":
+            //pronto2
+                console.clear();
+                console.log("Estoque disponível")
+                estoque.getEstoqueDisponivel();
                 const idToRemove = parseInt(prompt("Digite o ID do item a ser removido: "));
                 try {
                     estoque.removeItem(idToRemove);
@@ -40,7 +46,11 @@ function Main() {
                     console.error(error.message);
                 }
                 break;
+                
             case "4":
+                //pronto
+                console.clear();
+                estoque.getEstoque();
                 const idToIncrease = parseInt(prompt("Digite o ID do item para aumentar a quantidade: "));
                 const quantityToIncrease = parseInt(prompt("Digite a quantidade a ser adicionada: "));
                 try {
@@ -51,6 +61,8 @@ function Main() {
                 }
                 break;
             case "5":
+                console.clear();
+                estoque.getEstoque();
                 const idToDecrease = parseInt(prompt("Digite o ID do item para diminuir a quantidade: "));
                 const quantityToDecrease = parseInt(prompt("Digite a quantidade a ser removida: "));
                 try {
@@ -62,12 +74,15 @@ function Main() {
                 break;
             case "6":
                 // Adicionar item ao carrinho
+                gerenciadorDoCarrinho.addToCar();
                 break;
             case "7":
                 // Remover item do carrinho
+                gerenciadorDoCarrinho.removeToCar();
                 break;
             case "8":
                 // Listar itens no carrinho
+                gerenciadorDoCarrinho.listToCar();
                 break;
             case "9":
                 // Finalizar compra
