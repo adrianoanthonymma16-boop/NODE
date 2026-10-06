@@ -4,11 +4,10 @@ const prompt = promptSync();
 
 class Item {
     static #nextId = 1;
-    constructor(nome, preco, quantidade) {
+    constructor(nome, preco) {
         this.id = Item.#nextId++;
         this.nome = nome;
         this.preco = preco;
-        this.quantidade = quantidade;
         this.disponivel = true;
     }
 
@@ -31,11 +30,11 @@ class Item {
 }
 
 function createDefaultItems() {
-    const item1 = new Item("Camiseta", 29.99, 2);
-    const item2 = new Item("Calça Jeans", 79.99, 1);
-    const item3 = new Item("Tênis", 149.99, 1);
-    const item4 = new Item("Boné", 19.99, 3);
-    const item5 = new Item("Mochila", 89.99, 1);
+    const item1 = new Item("Camiseta", 29.99);
+    const item2 = new Item("Calça Jeans", 79.99);
+    const item3 = new Item("Tênis", 149.99);
+    const item4 = new Item("Boné", 19.99);
+    const item5 = new Item("Mochila", 89.99);
 
     return [
         item1,
@@ -50,10 +49,10 @@ function createItem() {
     while (true) {
         const nome = prompt("Digite o nome do item:");
         const preco = parseFloat(prompt("Digite o preço do item:"));
-        const quantidade = parseInt(prompt("Digite a quantidade do item:"));
+        // const quantidade = parseInt(prompt("Digite a quantidade do item:"));
 
         
-        const erros = utils.validarItem(nome, preco, quantidade);
+        const erros = utils.validarItem(nome, preco);
         if (erros.length > 0) {
             console.log("Erros encontrados:");
             erros.forEach(erro => console.log(`- ${erro}`));
@@ -61,7 +60,7 @@ function createItem() {
             continue;
         }
 
-        return new Item(nome, preco, quantidade);
+        return new Item(nome, preco);
     }
 }
 export {
