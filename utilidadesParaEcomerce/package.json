@@ -1,0 +1,19 @@
+{
+  "name": "utilidadesparaecomerce",
+  "version": "1.0.0",
+  "description": "Pacote de utilidades voltado a E-comerce",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start:dev": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "klausscamander",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.45.1",
+    "dotenv": "^18.0.7",
+    "prompt-sync": "^4.2.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
