@@ -51,7 +51,7 @@ function validarItem(nome, preco, quantidade, itensExistentes = []) {
     if (typeof quantidade !== "number" || isNaN(quantidade)) {
         erros.push("Quantidade deve ser um número");
     } else if (!Number.isInteger(quantidade)) {
-        erros.push("Quantidade deve ser um número inteiro");
+        erros.push("Quantidade deve ser umfim  número inteiro");
     } else if (quantidade <= 0) {
         erros.push("Quantidade deve ser positiva");
     } else if (quantidade > 10_000) {
