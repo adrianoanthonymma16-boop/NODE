@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore filmes, personagens, planetas, espécies, naves e veículos de Star Wars. Dados públicos da SWAPI.">
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23010101'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FFE81F' stroke-width='2'/%3E%3Cellipse cx='16' cy='16' rx='13' ry='4' fill='none' stroke='%23FFE81F' stroke-width='2' transform='rotate(-18 16 16)'/%3E%3C/svg%3E">
+    <title>Star Wars · Explorador da galáxia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <h1 id="logoTitulo">
+            <!-- Desenhado com texto e CSS: nenhuma requisição externa na página -->
+            <a class="logo" href="/" aria-label="Star Wars — voltar ao início">
+                <span class="logo__linha">Star</span>
+                <span class="logo__linha">Wars</span>
+            </a>
+        </h1>
+
+        <nav class="nav" aria-label="Menu principal">
+            <ul class="nav__lista" id="menu-principal">
+                <li><a href="#films" data-rota="films">Filmes</a></li>
+                <li><a href="#species" data-rota="species">Espécies</a></li>
+                <li><a href="#people" data-rota="people">Personagens</a></li>
+                <li><a href="#planets" data-rota="planets">Planetas</a></li>
+                <li><a href="#starships" data-rota="starships">Naves</a></li>
+                <li><a href="#vehicles" data-rota="vehicles">Veículos</a></li>
+            </ul>
+        </nav>
+
+        <form class="search" role="search" aria-label="Pesquisar no site">
+            <label class="sr-only" for="campo-pesquisa">Pesquisar</label>
+
+            <input
+                class="search__input"
+                type="search"
+                id="campo-pesquisa"
+                name="q"
+                placeholder="Pesquisar..."
+                autocomplete="off"
+                enterkeyhint="search">
+
+            <!-- Só aparece no mobile: no desktop quem confirma é o Enter -->
+            <button class="search__submit" type="submit">Buscar</button>
+
+            <button
+                class="search__toggle"
+                type="button"
+                aria-label="Abrir pesquisa"
+                aria-expanded="false"
+                aria-controls="campo-pesquisa">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="M16.5 16.5 21 21"></path>
+                </svg>
+            </button>
+        </form>
+    </header>
+
+    <main id="conteudo" class="conteudo">
+
+        <!-- Tela inicial: escolha da categoria -->
+        <section class="inicio" id="inicio" aria-labelledby="inicio-titulo">
+            <p class="inicio__sobre">Star Wars API Explorer</p>
+            <h2 class="inicio__titulo" id="inicio-titulo">Explore a galáxia</h2>
+            <p class="inicio__texto">
+                Escolha uma categoria. Cada card mostra os dados principais e abre a ficha
+                completa — todos os campos que a SWAPI devolve, incluindo os registros
+                relacionados (filmes, planetas, personagens).
+            </p>
+
+            <ul class="atalhos">
+                <li>
+                    <a class="atalho" href="#films" data-rota="films">
+                        <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-films"></use></svg>
+                        <span class="atalho__nome">Filmes</span>
+                        <span class="atalho__meta">Os episódios da saga</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="atalho" href="#species" data-rota="species">
+                        <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-species"></use></svg>
+                        <span class="atalho__nome">Espécies</span>
+                        <span class="atalho__meta">Povos e raças</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="atalho" href="#people" data-rota="people">
+                        <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-people"></use></svg>
+                        <span class="atalho__nome">Personagens</span>
+                        <span class="atalho__meta">Heróis e vilões</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="atalho" href="#planets" data-rota="planets">
+                        <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-planets"></use></svg>
+                        <span class="atalho__nome">Planetas</span>
+                        <span class="atalho__meta">Mundos e luas</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="atalho" href="#starships" data-rota="starships">
+                        <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-starships"></use></svg>
+                        <span class="atalho__nome">Naves</span>
+                        <span class="atalho__meta">Frotas e caças</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="atalho" href="#vehicles" data-rota="vehicles">
+                        <svg class="icone" aria-hidden="true" focusable="false"><use href="#i-vehicles"></use></svg>
+                        <span class="atalho__nome">Veículos</span>
+                        <span class="atalho__meta">Transportes e máquinas</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Resultados da categoria escolhida -->
+        <section class="resultados" id="resultados" aria-labelledby="resultado-titulo" hidden>
+            <div class="resultados__topo">
+                <div>
+                    <h2 class="resultados__titulo" id="resultado-titulo">Resultados</h2>
+                    <p class="resultados__meta" id="resultado-meta"></p>
+                </div>
+                <button class="chip chip--busca" type="button" id="limpar-busca" hidden>
+                    <span id="limpar-busca-termo"></span>
+                    <span aria-hidden="true">✕</span>
+                </button>
+            </div>
+
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+
+            <ul class="grade" id="grade"></ul>
+
+            <div class="aviso" id="aviso" hidden>
+                <p class="aviso__titulo" id="aviso-titulo"></p>
+                <p class="aviso__texto" id="aviso-texto"></p>
+                <button class="botao" type="button" id="aviso-acao"></button>
+            </div>
+
+            <nav class="paginacao" id="paginacao" aria-label="Paginação de resultados" hidden>
+                <button class="botao" type="button" id="anterior">← Anterior</button>
+                <p class="paginacao__status" id="pagina-atual"></p>
+                <button class="botao" type="button" id="proxima">Próxima →</button>
+            </nav>
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <p>
+            Dados públicos da <a href="https://swapi.dev/" target="_blank" rel="noopener noreferrer">SWAPI</a>.
+            Projeto de estudo — HTML, CSS e JS puro consumindo uma API Node.
+        </p>
+    </footer>
+
+    <!-- Ficha completa de qualquer registro (inclusive os relacionados) -->
+    <dialog class="ficha" id="ficha" aria-labelledby="ficha-titulo">
+        <div class="ficha__barra">
+            <button class="botao ficha__voltar" type="button" id="ficha-voltar" hidden>← Voltar</button>
+            <button class="ficha__fechar" type="button" id="ficha-fechar" aria-label="Fechar ficha">✕</button>
+        </div>
+
+        <p class="ficha__tipo" id="ficha-tipo"></p>
+        <h2 class="ficha__titulo" id="ficha-titulo"></h2>
+        <p class="ficha__aviso" id="ficha-aviso" role="alert" hidden></p>
+        <dl class="ficha__campos" id="ficha-campos"></dl>
+    </dialog>
+
+    <!-- Ícones desenhados uma vez, reutilizados com <use> -->
+    <svg class="oculto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <symbol id="i-people" viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="3.3"></circle>
+            <path d="M5.5 20c0-3.4 2.9-5.6 6.5-5.6s6.5 2.2 6.5 5.6"></path>
+        </symbol>
+        <symbol id="i-films" viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="M3 9h18M8.5 5v14M15.5 5v14"></path>
+        </symbol>
+        <symbol id="i-planets" viewBox="0 0 24 24">
+            <circle cx="11.5" cy="12" r="5.6"></circle>
+            <ellipse cx="11.5" cy="12" rx="9.5" ry="3.1" transform="rotate(-18 11.5 12)"></ellipse>
+        </symbol>
+        <symbol id="i-species" viewBox="0 0 24 24">
+            <circle cx="12" cy="13" r="5.6"></circle>
+            <path d="M9.6 4.2 11 7M14.4 4.2 13 7M10 12.4h.01M14 12.4h.01"></path>
+        </symbol>
+        <symbol id="i-starships" viewBox="0 0 24 24">
+            <path d="M12 3.2 19 20.2l-7-3.6-7 3.6 7-17Z"></path>
+        </symbol>
+        <symbol id="i-vehicles" viewBox="0 0 24 24">
+            <path d="M4 16h16M5.5 16v-3.2l2-4.3h9l2 4.3V16"></path>
+            <circle cx="8.2" cy="17.4" r="1.5"></circle>
+            <circle cx="15.8" cy="17.4" r="1.5"></circle>
+        </symbol>
+    </svg>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
